@@ -7,9 +7,9 @@ RUN apk update && \
 
 RUN git clone $REPOSITORY
 
-RUN rm docker_puller/dockerpuller/scripts/*
+RUN rm docker-puller/dockerpuller/scripts/*
 
-VOLUME docker_puller/dockerpuller/scripts/
+VOLUME docker-puller/dockerpuller/scripts/
 
 EXPOSE 8000
 
