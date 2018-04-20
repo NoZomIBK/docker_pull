@@ -7,11 +7,12 @@ RUN apk update && \
 
 RUN git clone $REPOSITORY
 
-RUN rm docker-puller/dockerpuller/scripts/*
+RUN rm /docker-puller/dockerpuller/scripts/*
 
-VOLUME docker-puller/dockerpuller/scripts/
+VOLUME /docker-puller/dockerpuller/scripts/
 
 EXPOSE 8000
 
+WORKDIR /docker-puller/dockerpuller/
 ENTRYPOINT ["sh", "-c"]
 CMD ["exec python app.py"]
