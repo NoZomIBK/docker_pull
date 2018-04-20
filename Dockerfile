@@ -1,18 +1,21 @@
-FROM alpine
+FROM python:3-alpine
 
 ENV REPOSITORY=https://github.com/glowdigitalmedia/docker-puller.git
 
 RUN apk update && \
-    apk add openssh git curl python docker
+    apk add openssh git curl docker
 
 RUN git clone $REPOSITORY
 
-RUN rm /docker-puller/dockerpuller/scripts/*
+WORKDIR /docker-puller/dockerpuller/
+
+RUN rm scripts/*
+
+RUN pip install --no-cache-dir -r /docker-puller/requirements.txt
 
 VOLUME /docker-puller/dockerpuller/scripts/
 
 EXPOSE 8000
 
-WORKDIR /docker-puller/dockerpuller/
 ENTRYPOINT ["sh", "-c"]
 CMD ["exec python app.py"]
