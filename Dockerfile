@@ -3,7 +3,7 @@ FROM python:3-alpine
 ENV REPOSITORY=https://github.com/glowdigitalmedia/docker-puller.git
 
 RUN apk update && \
-    apk add openssh git curl docker
+    apk add openssh git curl docker bash
 
 RUN git clone $REPOSITORY
 
